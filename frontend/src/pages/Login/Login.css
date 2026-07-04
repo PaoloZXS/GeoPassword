@@ -1,70 +1,102 @@
 @reference "tailwindcss";
 
 .login-container {
-  @apply min-h-screen flex items-center justify-center p-4 bg-slate-100;
+  @apply min-h-screen flex items-center justify-center bg-[#060e20];
 }
 
-.login-card {
-  @apply bg-white rounded-3xl shadow-lg p-8 sm:p-10 w-full max-w-sm;
+.login-main {
+  @apply relative w-full max-w-[400px] h-[100dvh] md:h-[844px] md:rounded-[40px] overflow-hidden flex flex-col px-8 py-12 text-white;
+  background: linear-gradient(180deg, #4c1d95 0%, #1e1b4b 100%);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-.login-logo {
-  @apply flex justify-center mb-6;
+.login-header {
+  @apply flex items-center mb-10;
 }
 
-.login-logo-icon {
-  @apply w-16 h-16 flex items-center justify-center rounded-2xl text-2xl;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+.login-back {
+  @apply p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer bg-transparent border-none text-white;
+}
+
+.login-brand {
+  @apply flex flex-col items-center mb-12;
+}
+
+.login-icon-box {
+  @apply w-20 h-20 mb-4 flex items-center justify-center bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20;
+}
+
+.login-shield {
+  @apply w-12 h-12 text-[#00e5ff];
 }
 
 .login-title {
-  @apply text-2xl font-bold text-center text-gray-900 mb-1;
-  letter-spacing: -0.3px;
+  @apply text-3xl font-bold tracking-tight;
 }
 
-.login-subtitle {
-  @apply text-sm text-gray-500 text-center mb-7;
+.login-tagline {
+  @apply text-white/60 text-sm mt-1;
 }
 
-.login-form {
-  @apply flex flex-col gap-4;
-}
-
-.form-group {
-  @apply flex flex-col gap-1.5;
-}
-
-.form-group label {
-  @apply text-sm font-medium text-gray-700;
-}
-
-.form-group input {
-  @apply w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition placeholder-gray-400 bg-gray-50;
-}
-
-.login-btn {
-  @apply mt-1 w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold text-sm hover:bg-indigo-700 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
-  letter-spacing: 0.3px;
+.login-form-section {
+  @apply flex-1;
 }
 
 .login-error {
-  @apply bg-red-50 border border-red-200 text-red-600 text-sm rounded-xl p-3 text-center mb-2;
+  @apply bg-red-500/20 border border-red-500/30 text-red-200 text-sm rounded-full p-3 text-center mb-4;
 }
 
-.login-forgot-link {
-  @apply text-center text-xs mt-2;
+.login-form {
+  @apply space-y-4;
 }
 
-.login-forgot-link a {
-  @apply text-indigo-600 hover:text-indigo-700 font-medium;
+.input-glass {
+  @apply flex items-center px-5 py-4 rounded-full transition-all duration-300;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.login-register-link {
-  @apply text-center text-sm text-gray-500 mt-8 pt-6 border-t border-gray-100;
+.input-glass:focus-within {
+  border-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-.login-register-link a {
-  @apply text-indigo-600 hover:text-indigo-700 font-semibold;
+.input-icon {
+  @apply w-5 h-5 text-white/70 mr-3 shrink-0;
+}
+
+.input-field {
+  @apply bg-transparent border-none focus:ring-0 w-full text-white placeholder-white/50 text-sm outline-none;
+}
+
+.input-toggle {
+  @apply ml-2 text-white/50 hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0;
+}
+
+.login-submit {
+  @apply w-full bg-white text-[#1e1b4b] font-bold py-4 rounded-full mt-4 hover:bg-gray-100 transition-all shadow-lg active:scale-95 cursor-pointer border-none disabled:opacity-50 disabled:cursor-not-allowed text-sm;
+}
+
+.login-forgot {
+  @apply text-center mt-2;
+}
+
+.login-forgot a {
+  @apply text-xs text-white/70 hover:text-white transition-colors;
+}
+
+.login-divider {
+  @apply flex items-center my-8;
+}
+
+.divider-line {
+  @apply flex-1 h-px bg-white/30;
+}
+
+.login-signup {
+  @apply text-center mt-4;
+}
+
+.signup-link {
+  @apply text-white font-bold hover:underline ml-1;
 }
