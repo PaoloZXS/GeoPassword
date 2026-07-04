@@ -4,23 +4,6 @@ import { useAuth } from "../../context/AuthContext.jsx";
 import "./Login.css";
 
 // SVG icons inline
-const ArrowLeftIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="w-6 h-6"
-  >
-    <path d="m12 19-7-7 7-7" />
-    <path d="M19 12H5" />
-  </svg>
-);
 const ShieldIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -136,16 +119,6 @@ function Login() {
   return (
     <div className="login-container">
       <main className="login-main">
-        <header className="login-header">
-          <button
-            className="login-back"
-            onClick={() => navigate(-1)}
-            aria-label="Go back"
-          >
-            <ArrowLeftIcon />
-          </button>
-        </header>
-
         <section className="login-brand">
           <div className="login-icon-box">
             <ShieldIcon />
