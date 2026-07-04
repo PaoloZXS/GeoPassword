@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .login-container {
-  @apply min-h-screen flex items-center justify-center bg-[#060e20];
+  @apply min-h-screen flex items-center justify-center bg-[#060e20] overflow-hidden;
 }
 
 .login-main {

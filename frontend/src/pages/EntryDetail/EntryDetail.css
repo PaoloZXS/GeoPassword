@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .entry-detail-container {
-  @apply min-h-screen flex items-center justify-center p-4;
+  @apply h-[100dvh] flex items-center justify-center p-4 overflow-hidden;
   background: linear-gradient(180deg, #1e1b4b 0%, #060e20 100%);
 }
 

@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .register-container {
-  @apply min-h-screen flex items-center justify-center bg-[#060e20];
+  @apply min-h-screen flex items-center justify-center bg-[#060e20] overflow-hidden;
 }
 
 .register-main {
@@ -39,7 +39,7 @@
 }
 
 .register-form-section {
-  @apply flex-1 overflow-y-auto;
+  @apply flex-1;
 }
 
 .register-error {
