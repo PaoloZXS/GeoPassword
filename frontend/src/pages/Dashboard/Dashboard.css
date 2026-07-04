@@ -1,20 +1,22 @@
 @reference "tailwindcss";
 
 .dashboard-container {
-  @apply min-h-screen bg-gray-50;
+  @apply min-h-screen bg-slate-50;
 }
 
 /* ─── Header ─── */
 .dashboard-header {
-  @apply bg-white shadow-sm px-4 sm:px-6 py-4 border-b border-gray-200;
+  @apply bg-white border-b border-slate-200 px-4 sm:px-6 py-4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .dashboard-header-top {
-  @apply flex items-center justify-between;
+  @apply flex items-center justify-between max-w-5xl mx-auto;
 }
 
 .dashboard-header h1 {
-  @apply text-xl sm:text-2xl font-bold text-gray-800;
+  @apply text-xl sm:text-2xl font-bold text-gray-900;
+  letter-spacing: -0.3px;
 }
 
 .dashboard-header p {
@@ -22,35 +24,36 @@
 }
 
 .logout-btn {
-  @apply px-3 sm:px-4 py-1.5 text-xs sm:text-sm text-red-600 border border-red-300 rounded-lg hover:bg-red-50 transition cursor-pointer shrink-0;
+  @apply px-4 py-2 text-xs sm:text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl hover:bg-red-100 transition cursor-pointer shrink-0 font-medium;
 }
 
-/* ─── Toolbar (search + nuovo) ─── */
+/* ─── Toolbar ─── */
 .dashboard-toolbar {
-  @apply max-w-4xl mx-auto px-4 sm:px-4 pt-4 sm:pt-6 flex items-center gap-3;
+  @apply max-w-5xl mx-auto px-4 sm:px-4 pt-5 sm:pt-6 flex items-center gap-3;
 }
 
 .dashboard-toolbar .new-btn {
-  @apply shrink-0 px-4 sm:px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-xl hover:bg-blue-700 transition cursor-pointer;
+  @apply shrink-0 px-5 py-2.5 bg-indigo-600 text-white text-sm font-medium rounded-xl hover:bg-indigo-700 transition cursor-pointer;
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.3);
 }
 
-/* ─── Content area ─── */
+/* ─── Content ─── */
 .dashboard-content {
-  @apply max-w-4xl mx-auto px-4 py-6;
+  @apply max-w-5xl mx-auto px-4 py-6;
 }
 
 .dashboard-loading,
 .dashboard-empty {
-  @apply text-center py-16 text-gray-400 text-sm;
+  @apply text-center py-20 text-gray-400 text-sm;
 }
 
 /* ─── Entry cards ─── */
 .entries-list {
-  @apply flex flex-col gap-3;
+  @apply flex flex-col gap-2;
 }
 
 .entry-card {
-  @apply bg-white rounded-xl shadow-sm border border-gray-200 px-4 sm:px-5 py-4 cursor-pointer hover:shadow-md hover:border-blue-300 transition-all;
+  @apply bg-white rounded-xl border border-slate-200 px-4 sm:px-5 py-4 cursor-pointer hover:border-indigo-300 hover:shadow-md transition-all;
 }
 
 .entry-card-main {
@@ -58,19 +61,15 @@
 }
 
 .entry-card-info {
-  @apply flex flex-col gap-1 min-w-0;
+  @apply flex flex-col gap-0.5 min-w-0;
 }
 
 .entry-card-title {
-  @apply text-sm sm:text-base font-semibold text-gray-800 truncate flex items-center gap-2;
+  @apply text-sm sm:text-base font-semibold text-gray-900 truncate flex items-center gap-2;
 }
 
 .entry-star {
   @apply text-sm shrink-0;
-}
-
-.entry-category {
-  @apply text-xs text-gray-400 truncate;
 }
 
 .entry-field-count {

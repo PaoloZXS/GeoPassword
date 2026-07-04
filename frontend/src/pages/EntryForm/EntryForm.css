@@ -1,15 +1,17 @@
 @reference "tailwindcss";
 
 .entry-form-container {
-  @apply min-h-screen bg-gray-50;
+  @apply min-h-screen bg-slate-50;
 }
 
 .entry-form-header {
-  @apply bg-white shadow-sm px-4 sm:px-6 py-4 border-b border-gray-200 flex items-center gap-4;
+  @apply bg-white border-b border-slate-200 px-4 sm:px-6 py-4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .entry-form-header h1 {
-  @apply text-lg sm:text-xl font-bold text-gray-800;
+  @apply text-lg sm:text-xl font-bold text-gray-900;
+  letter-spacing: -0.3px;
 }
 
 .entry-form-loading {
@@ -17,11 +19,12 @@
 }
 
 .entry-form-card {
-  @apply max-w-2xl mx-auto mt-6 sm:mt-8 mx-4 sm:mx-auto bg-white rounded-xl shadow-md p-5 sm:p-6 flex flex-col gap-5;
+  @apply max-w-2xl mx-4 sm:mx-auto mt-6 sm:mt-8 bg-white rounded-xl border border-slate-200 p-5 sm:p-6 flex flex-col gap-5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .entry-form-error {
-  @apply bg-red-100 border border-red-400 text-red-700 text-sm rounded-lg p-3 text-center;
+  @apply bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg p-3 text-center;
 }
 
 .form-group {
@@ -38,7 +41,7 @@
 
 .form-group input,
 .form-group textarea {
-  @apply px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+  @apply px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition placeholder-gray-400;
 }
 
 .form-group textarea {
@@ -46,7 +49,7 @@
 }
 
 .entry-form-actions {
-  @apply flex flex-row gap-2 mt-2 pt-4 border-t border-gray-100;
+  @apply flex flex-row gap-2 mt-2 pt-4 border-t border-slate-100;
 }
 
 .entry-form-actions .btn {

@@ -5,7 +5,7 @@
 }
 
 .search-bar input {
-  @apply w-full px-4 py-2.5 border border-gray-300 rounded-xl text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+  @apply w-full px-4 py-2.5 border border-slate-300 rounded-xl text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition placeholder-slate-400 bg-white;
 }
 
 .search-icon {

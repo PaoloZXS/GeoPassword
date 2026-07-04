@@ -1,19 +1,22 @@
 @reference "tailwindcss";
 
 .login-container {
-  @apply min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-700 p-4;
+  @apply min-h-screen flex items-center justify-center p-4;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
 }
 
 .login-card {
   @apply bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .login-title {
-  @apply text-3xl font-bold text-center text-gray-800 mb-2;
+  @apply text-3xl font-bold text-center text-gray-900 mb-1;
+  letter-spacing: -0.5px;
 }
 
 .login-subtitle {
-  @apply text-gray-500 text-center mb-8;
+  @apply text-gray-500 text-center mb-8 text-sm;
 }
 
 .login-form {
@@ -29,15 +32,16 @@
 }
 
 .form-group input {
-  @apply px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+  @apply px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition placeholder-gray-400;
 }
 
 .login-btn {
-  @apply mt-2 bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply mt-1 w-full bg-indigo-600 text-white py-2.5 rounded-lg font-medium hover:bg-indigo-700 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.3);
 }
 
 .login-error {
-  @apply bg-red-100 border border-red-400 text-red-700 text-sm rounded-lg p-3 text-center;
+  @apply bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg p-3 text-center;
 }
 
 .login-register-link {
@@ -45,7 +49,7 @@
 }
 
 .login-register-link a {
-  @apply text-blue-600 hover:text-blue-800 font-medium;
+  @apply text-indigo-600 hover:text-indigo-700 font-medium;
 }
 
 .login-forgot-link {
@@ -53,5 +57,5 @@
 }
 
 .login-forgot-link a {
-  @apply text-gray-400 hover:text-gray-600;
+  @apply text-gray-400 hover:text-gray-600 transition;
 }
