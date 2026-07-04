@@ -205,13 +205,13 @@ function Dashboard() {
                               navigate(`/entry/edit/${entry.id}`);
                             }}
                           >
-                            ✏️ Modifica
+                            Modifica
                           </button>
                           <button
                             className="menu-item menu-item-danger"
                             onClick={(e) => handleDelete(e, entry.id)}
                           >
-                            🗑️ Elimina
+                            Elimina
                           </button>
                         </div>
                       )}

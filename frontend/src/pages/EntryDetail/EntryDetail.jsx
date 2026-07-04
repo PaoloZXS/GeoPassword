@@ -68,24 +68,6 @@ function EntryDetail() {
         {entry.description && (
           <p className="entry-detail-desc">{entry.description}</p>
         )}
-
-        <div className="entry-actions">
-          <button
-            className="btn-primary-form"
-            onClick={() => navigate(`/entry/edit/${id}`)}
-          >
-            Modifica
-          </button>
-          <button className="btn-outline-form" onClick={handleDelete}>
-            Elimina
-          </button>
-          <button
-            className="btn-text-form"
-            onClick={() => navigate("/dashboard")}
-          >
-            Indietro
-          </button>
-        </div>
       </div>
     </div>
   );
