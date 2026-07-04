@@ -86,7 +86,10 @@ function ForgotPassword() {
   return (
     <div className="forgot-container">
       <div className="forgot-card">
-        <h1 className="forgot-title">GeoPassword</h1>
+        <div className="forgot-logo">
+          <span className="forgot-logo-icon">🔐</span>
+        </div>
+        <h1 className="forgot-title">Recupero account</h1>
 
         {step === 1 && (
           <>

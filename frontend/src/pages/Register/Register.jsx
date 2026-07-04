@@ -52,8 +52,11 @@ function Register() {
   return (
     <div className="register-container">
       <div className="register-card">
-        <h1 className="register-title">GeoPassword</h1>
-        <p className="register-subtitle">Crea un nuovo account</p>
+        <div className="register-logo">
+          <span className="register-logo-icon">🔐</span>
+        </div>
+        <h1 className="register-title">Crea account</h1>
+        <p className="register-subtitle">Registrati per usare GeoPassword</p>
 
         {error && <p className="register-error">{error}</p>}
 

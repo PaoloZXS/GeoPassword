@@ -31,7 +31,10 @@ function Login() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1 className="login-title">GeoPassword</h1>
+        <div className="login-logo">
+          <span className="login-logo-icon">🔐</span>
+        </div>
+        <h1 className="login-title">Benvenuto</h1>
         <p className="login-subtitle">Accedi al tuo gestionale password</p>
         {error && <p className="login-error">{error}</p>}
         <form className="login-form" onSubmit={handleSubmit}>
@@ -60,10 +63,10 @@ function Login() {
           <button type="submit" className="login-btn" disabled={loading}>
             {loading ? "Accesso in corso..." : "Accedi"}
           </button>
+          <p className="login-forgot-link">
+            <Link to="/forgot-password">Password dimenticata?</Link>
+          </p>
         </form>
-        <p className="login-forgot-link">
-          <Link to="/forgot-password">Password dimenticata?</Link>
-        </p>
         <p className="login-register-link">
           Non hai un account? <Link to="/register">Registrati</Link>
         </p>

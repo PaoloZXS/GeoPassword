@@ -60,7 +60,7 @@ function Dashboard() {
       <div className="dashboard-toolbar">
         <SearchBar value={searchTerm} onChange={setSearchTerm} />
         <button className="new-btn" onClick={() => navigate("/entry/new")}>
-          ✚ Nuovo Servizio
+          + Nuovo Servizio
         </button>
       </div>
 
@@ -72,13 +72,9 @@ function Dashboard() {
         ) : filteredEntries.length === 0 ? (
           <div className="dashboard-empty">
             {searchTerm ? (
-              <>
-                <span className="empty-icon">🔍</span>
-                <p>Nessun servizio trovato per "{searchTerm}"</p>
-              </>
+              <p>Nessun servizio trovato per "{searchTerm}"</p>
             ) : (
               <>
-                <span className="empty-icon">📂</span>
                 <p>Nessun servizio ancora aggiunto.</p>
                 <p className="empty-hint">
                   Clicca "+ Nuovo Servizio" per iniziare.
@@ -99,9 +95,6 @@ function Dashboard() {
                   className="entry-card"
                   onClick={() => navigate(`/entry/${entry.id}`)}
                 >
-                  <div className="entry-card-left">
-                    <span className="entry-card-icon">🔑</span>
-                  </div>
                   <div className="entry-card-main">
                     <div className="entry-card-info">
                       <h3 className="entry-card-title">
@@ -116,7 +109,6 @@ function Dashboard() {
                       {(entry.fields_count ?? 0) !== 1 ? "i" : ""}
                     </span>
                   </div>
-                  <div className="entry-card-arrow">›</div>
                 </div>
               ))}
             </div>
