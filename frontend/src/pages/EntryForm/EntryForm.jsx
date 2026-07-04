@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { supabase } from "../../utils/supabase.js";
-import Button from "../../components/Button/Button.jsx";
 import "./EntryForm.css";
 
 function EntryForm() {
@@ -93,71 +92,75 @@ function EntryForm() {
 
   return (
     <div className="entry-form-container">
-      <header className="entry-form-header">
-        <button className="back-btn" onClick={() => navigate("/dashboard")}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-5 h-5"
-          >
-            <path d="m12 19-7-7 7-7" />
-            <path d="M19 12H5" />
-          </svg>
-        </button>
-        <h1>{isEditing ? "Modifica Account" : "Nuovo servizio"}</h1>
+      {/* Floating glow */}
+      <div className="form-glow" />
+
+      {/* Fixed header */}
+      <header className="form-header">
+        <div className="form-header-inner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 inline-block mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h1>{isEditing ? "Modifica servizio" : "Nuovo servizio"}</h1>
+        </div>
       </header>
 
-      <form className="entry-form-card" onSubmit={handleSubmit}>
-        {error && <p className="entry-form-error">{error}</p>}
+      <main className="form-main">
+        <div className="form-glass">
+          {/* Corner accent */}
+          <div className="form-corner" />
 
-        <div className="form-group">
-          <label htmlFor="title">
-            Servizio <span className="required">*</span>
-          </label>
-          <input
-            id="title"
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="es. BANCA SAN PAOLO"
-            required
-          />
-        </div>
+          <form className="form-inner" onSubmit={handleSubmit}>
+            {error && <p className="form-error">{error}</p>}
 
-        <div className="form-group">
-          <label htmlFor="description">Username/Password</label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="es. Tutte le credenziali della banca"
-            rows={8}
-          />
-        </div>
+            {/* Servizio field */}
+            <div className="field-group">
+              <label className="field-label" htmlFor="title">
+                Servizio <span className="field-required">*</span>
+              </label>
+              <div className="field-input-wrap">
+                <input
+                  id="title"
+                  className="field-input"
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="es. BANCA SAN PAOLO"
+                  required
+                />
+              </div>
+            </div>
 
-        <div className="entry-form-actions">
-          <Button type="submit" variant="primary" disabled={saving}>
-            {saving
-              ? "Salvataggio..."
-              : isEditing
-                ? "Aggiorna"
-                : "Crea Servizio"}
-          </Button>
-          <Button variant="danger" onClick={() => navigate("/dashboard")}>
-            Annulla
-          </Button>
-          <Button variant="success" onClick={() => navigate("/dashboard")}>
-            ← Indietro
-          </Button>
+            {/* Username/Password field */}
+            <div className="field-group">
+              <label className="field-label" htmlFor="description">
+                Username/Password
+              </label>
+              <div className="field-input-wrap">
+                <textarea
+                  id="description"
+                  className="field-textarea"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="es. Tutte le credenziali della banca"
+                  rows={8}
+                />
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="form-buttons">
+              <button type="submit" className="btn-primary-form" disabled={saving}>
+                {saving ? "Salvataggio..." : isEditing ? "Aggiorna" : "Crea Servizio"}
+              </button>
+              <button type="button" className="btn-outline-form" onClick={() => navigate("/dashboard")}>
+                Indietro
+              </button>
+              <button type="button" className="btn-text-form" onClick={() => navigate("/dashboard")}>
+                Annulla
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </main>
     </div>
   );
 }

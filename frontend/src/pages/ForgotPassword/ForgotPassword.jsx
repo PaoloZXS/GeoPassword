@@ -261,11 +261,11 @@ function ForgotPassword() {
           </>
         )}
 
-        <p className="forgot-login-link">
+        <div className="forgot-login-link">
           <p className="text-sm text-white/60">
             <Link to="/login">Torna al Login</Link>
           </p>
-        </p>
+        </div>
       </main>
     </div>
   );

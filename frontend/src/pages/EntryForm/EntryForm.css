@@ -1,64 +1,147 @@
 @reference "tailwindcss";
 
+/* ─── Container ─── */
 .entry-form-container {
-  @apply min-h-screen bg-[#060e20];
+  @apply min-h-screen;
+  background: linear-gradient(180deg, #131b2e 0%, #060e20 100%);
 }
 
-.entry-form-header {
-  background: linear-gradient(180deg, #4c1d95 0%, #1e1b4b 100%);
-  @apply border-b border-white/10 px-4 sm:px-6 py-4 flex items-center gap-3;
+.form-glow {
+  @apply fixed top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 pointer-events-none -z-10;
+  background: rgba(0, 218, 243, 0.08);
+  filter: blur(100px);
+  border-radius: 50%;
 }
 
-.entry-form-header .back-btn {
-  @apply p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer bg-transparent border-none text-white/70 hover:text-white;
+/* ─── Header ─── */
+.form-header {
+  @apply fixed top-0 w-full z-50 flex items-center px-5 h-12;
+  background: rgba(11, 19, 38, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(186, 201, 204, 0.1);
 }
 
-.entry-form-header h1 {
-  @apply text-lg sm:text-xl font-bold text-white;
-  letter-spacing: -0.3px;
+.form-header-inner {
+  @apply flex items-center gap-2;
 }
 
-.entry-form-loading {
-  @apply flex items-center justify-center min-h-screen text-white/40 text-sm;
+.form-header-inner svg {
+  @apply text-[#00daf3];
 }
 
-.entry-form-card {
-  @apply max-w-2xl mx-4 sm:mx-auto mt-6 sm:mt-8 rounded-xl border border-white/20 p-5 sm:p-6 flex flex-col gap-5;
-  background-color: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(4px);
+.form-header-inner h1 {
+  @apply text-xl font-semibold text-[#c3f5ff] tracking-tight;
 }
 
-.entry-form-error {
-  @apply bg-red-500/20 border border-red-500/30 text-red-200 text-sm rounded-full p-3 text-center;
+/* ─── Main ─── */
+.form-main {
+  @apply pt-20 pb-12 px-5 max-w-lg mx-auto min-h-screen flex flex-col justify-center;
 }
 
-.entry-form-card .form-group {
-  @apply flex flex-col gap-1.5;
+/* ─── Glass panel ─── */
+.form-glass {
+  @apply p-8 rounded-[32px] relative overflow-hidden;
+  background: rgba(34, 42, 61, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(186, 201, 204, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-.entry-form-card .form-group label {
-  @apply text-sm font-medium text-white/80;
+.form-corner {
+  @apply absolute top-0 right-0 w-24 h-24 pointer-events-none;
+  background: linear-gradient(225deg, rgba(0, 218, 243, 0.1), transparent);
 }
 
-.entry-form-card .form-group .required {
-  @apply text-red-400;
+/* ─── Form ─── */
+.form-inner {
+  @apply space-y-7;
 }
 
-.entry-form-card .form-group input,
-.entry-form-card .form-group textarea {
-  @apply w-full px-4 py-3 rounded-full text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition placeholder-white/50 outline-none text-white;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.form-error {
+  @apply bg-red-500/20 border border-red-500/30 text-red-200 text-sm rounded-2xl p-4 text-center;
 }
 
-.entry-form-card .form-group textarea {
-  @apply resize-none min-h-[180px] rounded-2xl;
+/* ─── Field groups ─── */
+.field-group {
+  @apply space-y-2;
 }
 
-.entry-form-card .entry-form-actions {
-  @apply flex flex-row gap-2 mt-2 pt-4 border-t border-white/10;
+.field-label {
+  @apply block font-medium text-xs text-[#bac9cc] uppercase tracking-[0.1em] px-2;
 }
 
-.entry-form-card .entry-form-actions .btn {
-  @apply flex-1 text-center;
+.field-required {
+  @apply text-[#00daf3];
+}
+
+.field-input-wrap {
+  @apply relative;
+}
+
+.field-input {
+  @apply w-full px-6 py-4 rounded-2xl text-sm outline-none transition-all duration-300 text-[#dae2fd] placeholder:text-[#849396]/50;
+  background: rgba(45, 52, 73, 0.5);
+  border: 1px solid rgba(59, 73, 76, 0.3);
+}
+
+.field-input:focus {
+  border-color: #00daf3;
+  box-shadow: 0 0 12px rgba(0, 218, 243, 0.2);
+}
+
+.field-textarea {
+  @apply w-full px-6 py-4 rounded-3xl text-sm outline-none transition-all duration-300 resize-none min-h-[200px] text-[#dae2fd] placeholder:text-[#849396]/50;
+  background: rgba(45, 52, 73, 0.5);
+  border: 1px solid rgba(59, 73, 76, 0.3);
+}
+
+.field-textarea:focus {
+  border-color: #00daf3;
+  box-shadow: 0 0 12px rgba(0, 218, 243, 0.2);
+}
+
+/* ─── Buttons ─── */
+.form-buttons {
+  @apply space-y-3 pt-4;
+}
+
+.btn-primary-form {
+  @apply w-full h-12 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border-none;
+  background: #00daf3;
+  color: #00363d;
+  box-shadow: 0 8px 32px rgba(0, 218, 243, 0.3);
+}
+
+.btn-primary-form:hover:not(:disabled) {
+  transform: scale(1.02);
+}
+
+.btn-primary-form:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.btn-outline-form {
+  @apply w-full h-12 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer border-none;
+  color: #c3f5ff;
+  background: transparent;
+  border: 1px solid rgba(0, 218, 243, 0.3);
+}
+
+.btn-outline-form:hover {
+  background: rgba(0, 218, 243, 0.1);
+}
+
+.btn-outline-form:active {
+  transform: scale(0.95);
+}
+
+.btn-text-form {
+  @apply w-full py-2 text-sm font-medium transition-colors duration-200 cursor-pointer text-center border-none bg-transparent;
+  color: #849396;
+}
+
+.btn-text-form:hover {
+  color: #c3f5ff;
 }
