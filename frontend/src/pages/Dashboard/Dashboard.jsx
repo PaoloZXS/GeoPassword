@@ -152,21 +152,25 @@ function Dashboard() {
 
       <main className="dashboard-content">
         {loading ? (
-          <div className="dashboard-loading">
-            <p>Caricamento...</p>
+          <div className="cards-container">
+            <div className="dashboard-loading">
+              <p>Caricamento...</p>
+            </div>
           </div>
         ) : filteredEntries.length === 0 ? (
-          <div className="dashboard-empty">
-            {searchTerm ? (
-              <p>Nessun servizio trovato per "{searchTerm}"</p>
-            ) : (
-              <>
-                <p>Nessun servizio ancora aggiunto.</p>
-                <p className="empty-hint">
-                  Clicca "+ Nuovo Servizio" per iniziare.
-                </p>
-              </>
-            )}
+          <div className="cards-container">
+            <div className="dashboard-empty">
+              {searchTerm ? (
+                <p>Nessun servizio trovato per "{searchTerm}"</p>
+              ) : (
+                <>
+                  <p>Nessun servizio ancora aggiunto.</p>
+                  <p className="empty-hint">
+                    Clicca "+ Nuovo Servizio" per iniziare.
+                  </p>
+                </>
+              )}
+            </div>
           </div>
         ) : (
           <>
@@ -174,59 +178,61 @@ function Dashboard() {
               {filteredEntries.length}{" "}
               {filteredEntries.length === 1 ? "servizio" : "servizi"}
             </div>
-            <div className="entries-list">
-              {filteredEntries.map((entry) => (
-                <div
-                  key={entry.id}
-                  className="entry-card"
-                  onClick={() => navigate(`/entry/${entry.id}`)}
-                >
-                  <div className="entry-card-main">
-                    <div className="entry-card-info">
-                      <h3 className="entry-card-title">
-                        {entry.title}
-                        {entry.favorite && (
-                          <span className="entry-star">⭐</span>
-                        )}
-                      </h3>
-                    </div>
-                    <div className="entry-card-menu-wrap">
-                      <button
-                        className="entry-card-menu-btn"
-                        data-menu-id={entry.id}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          const btn = e.currentTarget;
-                          const rect = btn.getBoundingClientRect();
-                          setMenuPos({
-                            top: rect.bottom + 4,
-                            right: window.innerWidth - rect.right
-                          });
-                          setMenuOpenId(
-                            menuOpenId === entry.id ? null : entry.id
-                          );
-                        }}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+            <div className="cards-container">
+              <div className="entries-list">
+                {filteredEntries.map((entry) => (
+                  <div
+                    key={entry.id}
+                    className="entry-card"
+                    onClick={() => navigate(`/entry/${entry.id}`)}
+                  >
+                    <div className="entry-card-main">
+                      <div className="entry-card-info">
+                        <h3 className="entry-card-title">
+                          {entry.title}
+                          {entry.favorite && (
+                            <span className="entry-star">⭐</span>
+                          )}
+                        </h3>
+                      </div>
+                      <div className="entry-card-menu-wrap">
+                        <button
+                          className="entry-card-menu-btn"
+                          data-menu-id={entry.id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const btn = e.currentTarget;
+                            const rect = btn.getBoundingClientRect();
+                            setMenuPos({
+                              top: rect.bottom + 4,
+                              right: window.innerWidth - rect.right
+                            });
+                            setMenuOpenId(
+                              menuOpenId === entry.id ? null : entry.id
+                            );
+                          }}
                         >
-                          <circle cx="12" cy="12" r="1" />
-                          <circle cx="12" cy="5" r="1" />
-                          <circle cx="12" cy="19" r="1" />
-                        </svg>
-                      </button>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <circle cx="12" cy="12" r="1" />
+                            <circle cx="12" cy="5" r="1" />
+                            <circle cx="12" cy="19" r="1" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </>
         )}
