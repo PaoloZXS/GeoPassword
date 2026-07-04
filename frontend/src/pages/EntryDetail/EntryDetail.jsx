@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { supabase } from "../../utils/supabase.js";
-import Button from "../../components/Button/Button.jsx";
 import "./EntryDetail.css";
 
 function EntryDetail() {
@@ -88,16 +87,16 @@ function EntryDetail() {
         )}
 
         <div className="entry-actions">
-          <Button
-            variant="primary"
-            onClick={() => navigate(`/entry/edit/${id}`)}
-          >
+          <button className="btn-primary-form" onClick={() => navigate(`/entry/edit/${id}`)}>
             Modifica
-          </Button>
-          <Button variant="danger" onClick={handleDelete}>
+          </button>
+          <button className="btn-outline-form" onClick={handleDelete}>
             Elimina
-          </Button>
-          <Button variant="success" onClick={() => navigate("/dashboard")}>
+          </button>
+          <button className="btn-text-form" onClick={() => navigate("/dashboard")}>
+            ← Indietro
+          </button>
+        </div>
             ← Indietro
           </Button>
         </div>

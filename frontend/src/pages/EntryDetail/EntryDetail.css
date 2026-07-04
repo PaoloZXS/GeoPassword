@@ -10,8 +10,11 @@
 }
 
 .entry-detail-header {
-  background: linear-gradient(180deg, #4c1d95 0%, #1e1b4b 100%);
-  @apply border-b border-white/10 px-4 sm:px-6 py-4 flex items-center gap-3;
+  @apply fixed top-0 w-full z-50 flex items-center gap-3 px-5 h-12;
+  background: rgba(11, 19, 38, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(186, 201, 204, 0.1);
 }
 
 .entry-detail-header .back-btn {
@@ -19,14 +22,12 @@
 }
 
 .entry-detail-header h1 {
-  @apply text-lg sm:text-xl font-bold text-white truncate;
+  @apply text-lg sm:text-xl font-semibold text-[#c3f5ff] truncate;
   letter-spacing: -0.3px;
 }
 
 .entry-detail-card {
-  @apply max-w-2xl mx-4 sm:mx-auto mt-6 sm:mt-8 rounded-xl border border-white/20 p-5 sm:p-6;
-  background-color: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(4px);
+  @apply max-w-2xl mx-4 sm:mx-auto mt-16 sm:mt-16 p-5 sm:p-6;
 }
 
 .entry-detail-fav {
@@ -34,13 +35,49 @@
 }
 
 .entry-detail-desc {
-  @apply text-sm text-white/80 mt-2 mb-2 pb-4 border-b border-white/10 whitespace-pre-wrap leading-relaxed;
+  @apply text-sm text-white/80 mt-2 mb-6 pb-4 border-b border-white/10 whitespace-pre-wrap leading-relaxed;
 }
 
-.entry-detail-card .entry-actions {
-  @apply flex flex-row gap-2 mt-6 pt-4 border-t border-white/10;
+/* ─── Buttons (same as EntryForm) ─── */
+.entry-actions {
+  @apply space-y-3;
 }
 
-.entry-detail-card .entry-actions .btn {
-  @apply flex-1 text-center;
+.entry-actions .btn-primary-form {
+  @apply w-full h-12 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border-none;
+  background: #00daf3;
+  color: #00363d;
+  box-shadow: 0 8px 32px rgba(0, 218, 243, 0.3);
+}
+
+.entry-actions .btn-primary-form:hover {
+  transform: scale(1.02);
+}
+
+.entry-actions .btn-primary-form:active {
+  transform: scale(0.95);
+}
+
+.entry-actions .btn-outline-form {
+  @apply w-full h-12 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer border-none;
+  color: #ffb4ab;
+  background: transparent;
+  border: 1px solid rgba(255, 180, 171, 0.3);
+}
+
+.entry-actions .btn-outline-form:hover {
+  background: rgba(255, 180, 171, 0.1);
+}
+
+.entry-actions .btn-outline-form:active {
+  transform: scale(0.95);
+}
+
+.entry-actions .btn-text-form {
+  @apply w-full py-2 text-sm font-medium transition-colors duration-200 cursor-pointer text-center border-none bg-transparent;
+  color: #849396;
+}
+
+.entry-actions .btn-text-form:hover {
+  color: #c3f5ff;
 }
