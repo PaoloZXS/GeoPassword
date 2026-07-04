@@ -165,6 +165,10 @@ function Login() {
               {loading ? "ACCESSO IN CORSO..." : "LOGIN"}
             </button>
 
+            <div className="login-forgot">
+              <Link to="/forgot-password">Password dimenticata?</Link>
+            </div>
+
             <div className="login-divider">
               <span className="divider-line" />
               <span className="divider-line" />

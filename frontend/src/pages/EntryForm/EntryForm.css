@@ -1,57 +1,64 @@
 @reference "tailwindcss";
 
 .entry-form-container {
-  @apply min-h-screen bg-slate-50;
+  @apply min-h-screen bg-[#060e20];
 }
 
 .entry-form-header {
-  @apply bg-white border-b border-slate-200 px-4 sm:px-6 py-4;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(180deg, #4c1d95 0%, #1e1b4b 100%);
+  @apply border-b border-white/10 px-4 sm:px-6 py-4 flex items-center gap-3;
+}
+
+.entry-form-header .back-btn {
+  @apply p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer bg-transparent border-none text-white/70 hover:text-white;
 }
 
 .entry-form-header h1 {
-  @apply text-lg sm:text-xl font-bold text-gray-900;
+  @apply text-lg sm:text-xl font-bold text-white;
   letter-spacing: -0.3px;
 }
 
 .entry-form-loading {
-  @apply flex items-center justify-center min-h-screen text-gray-400 text-sm;
+  @apply flex items-center justify-center min-h-screen text-white/40 text-sm;
 }
 
 .entry-form-card {
-  @apply max-w-2xl mx-4 sm:mx-auto mt-6 sm:mt-8 bg-white rounded-xl border border-slate-200 p-5 sm:p-6 flex flex-col gap-5;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  @apply max-w-2xl mx-4 sm:mx-auto mt-6 sm:mt-8 rounded-xl border border-white/20 p-5 sm:p-6 flex flex-col gap-5;
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
 }
 
 .entry-form-error {
-  @apply bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg p-3 text-center;
+  @apply bg-red-500/20 border border-red-500/30 text-red-200 text-sm rounded-full p-3 text-center;
 }
 
-.form-group {
+.entry-form-card .form-group {
   @apply flex flex-col gap-1.5;
 }
 
-.form-group label {
-  @apply text-sm font-medium text-gray-700;
+.entry-form-card .form-group label {
+  @apply text-sm font-medium text-white/80;
 }
 
-.form-group .required {
-  @apply text-red-500;
+.entry-form-card .form-group .required {
+  @apply text-red-400;
 }
 
-.form-group input,
-.form-group textarea {
-  @apply px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition placeholder-gray-400;
+.entry-form-card .form-group input,
+.entry-form-card .form-group textarea {
+  @apply w-full px-4 py-3 rounded-full text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition placeholder-white/50 outline-none text-white;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.form-group textarea {
-  @apply resize-none min-h-[180px];
+.entry-form-card .form-group textarea {
+  @apply resize-none min-h-[180px] rounded-2xl;
 }
 
-.entry-form-actions {
-  @apply flex flex-row gap-2 mt-2 pt-4 border-t border-slate-100;
+.entry-form-card .entry-form-actions {
+  @apply flex flex-row gap-2 mt-2 pt-4 border-t border-white/10;
 }
 
-.entry-form-actions .btn {
+.entry-form-card .entry-form-actions .btn {
   @apply flex-1 text-center;
 }
