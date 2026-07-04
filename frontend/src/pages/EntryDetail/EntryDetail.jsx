@@ -57,7 +57,7 @@ function EntryDetail() {
   return (
     <div className="entry-detail-container">
       <header className="entry-detail-header">
-        <h1>{entry.title}</h1>
+        <h1>Servizio : {entry.title}</h1>
       </header>
 
       <div className="entry-detail-card">

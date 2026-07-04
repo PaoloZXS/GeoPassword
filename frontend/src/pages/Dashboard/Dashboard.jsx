@@ -130,15 +130,9 @@ function Dashboard() {
                     <div className="entry-card-info">
                       <h3 className="entry-card-title">
                         {entry.title}
-                        {entry.favorite && (
-                          <span className="entry-star">⭐</span>
-                        )}
+                        {entry.favorite && <span className="entry-star">⭐</span>}
                       </h3>
                     </div>
-                    <span className="entry-field-count">
-                      {entry.fields_count ?? 0} campo
-                      {(entry.fields_count ?? 0) !== 1 ? "i" : ""}
-                    </span>
                   </div>
                 </div>
               ))}
