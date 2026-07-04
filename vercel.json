@@ -3,5 +3,6 @@
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
+  "rootDirectory": "frontend",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
