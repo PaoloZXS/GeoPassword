@@ -44,12 +44,15 @@ function Dashboard() {
     <div className="dashboard-container">
       <header className="dashboard-header">
         <div className="dashboard-header-top">
-          <div>
-            <h1>GeoPassword</h1>
-            <p>Benvenuto, {user?.username}</p>
+          <div className="dashboard-header-left">
+            <span className="dashboard-logo">🔐</span>
+            <div>
+              <h1>GeoPassword</h1>
+              <p>Benvenuto, {user?.username}</p>
+            </div>
           </div>
           <button className="logout-btn" onClick={handleLogout}>
-            Esci
+            🚪 Esci
           </button>
         </div>
       </header>
@@ -57,7 +60,7 @@ function Dashboard() {
       <div className="dashboard-toolbar">
         <SearchBar value={searchTerm} onChange={setSearchTerm} />
         <button className="new-btn" onClick={() => navigate("/entry/new")}>
-          + Nuovo Servizio
+          ✚ Nuovo Servizio
         </button>
       </div>
 
@@ -68,30 +71,56 @@ function Dashboard() {
           </div>
         ) : filteredEntries.length === 0 ? (
           <div className="dashboard-empty">
-            <p>Nessun account trovato.</p>
+            {searchTerm ? (
+              <>
+                <span className="empty-icon">🔍</span>
+                <p>Nessun servizio trovato per "{searchTerm}"</p>
+              </>
+            ) : (
+              <>
+                <span className="empty-icon">📂</span>
+                <p>Nessun servizio ancora aggiunto.</p>
+                <p className="empty-hint">
+                  Clicca "+ Nuovo Servizio" per iniziare.
+                </p>
+              </>
+            )}
           </div>
         ) : (
-          <div className="entries-list">
-            {filteredEntries.map((entry) => (
-              <div
-                key={entry.id}
-                className="entry-card"
-                onClick={() => navigate(`/entry/${entry.id}`)}
-              >
-                <div className="entry-card-main">
-                  <div className="entry-card-info">
-                    <h3 className="entry-card-title">
-                      {entry.title}
-                      {entry.favorite && <span className="entry-star">⭐</span>}
-                    </h3>
+          <>
+            <div className="entries-count">
+              {filteredEntries.length} servizio
+              {filteredEntries.length !== 1 ? "i" : ""}
+            </div>
+            <div className="entries-list">
+              {filteredEntries.map((entry) => (
+                <div
+                  key={entry.id}
+                  className="entry-card"
+                  onClick={() => navigate(`/entry/${entry.id}`)}
+                >
+                  <div className="entry-card-left">
+                    <span className="entry-card-icon">🔑</span>
                   </div>
-                  <span className="entry-field-count">
-                    {entry.fields_count ?? 0} campi
-                  </span>
+                  <div className="entry-card-main">
+                    <div className="entry-card-info">
+                      <h3 className="entry-card-title">
+                        {entry.title}
+                        {entry.favorite && (
+                          <span className="entry-star">⭐</span>
+                        )}
+                      </h3>
+                    </div>
+                    <span className="entry-field-count">
+                      {entry.fields_count ?? 0} campo
+                      {(entry.fields_count ?? 0) !== 1 ? "i" : ""}
+                    </span>
+                  </div>
+                  <div className="entry-card-arrow">›</div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </>
         )}
       </main>
     </div>

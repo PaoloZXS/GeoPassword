@@ -14,6 +14,14 @@
   @apply flex items-center justify-between max-w-5xl mx-auto;
 }
 
+.dashboard-header-left {
+  @apply flex items-center gap-3;
+}
+
+.dashboard-logo {
+  @apply text-2xl sm:text-3xl;
+}
+
 .dashboard-header h1 {
   @apply text-xl sm:text-2xl font-bold text-gray-900;
   letter-spacing: -0.3px;
@@ -42,9 +50,24 @@
   @apply max-w-5xl mx-auto px-4 py-6;
 }
 
-.dashboard-loading,
-.dashboard-empty {
+.dashboard-loading {
   @apply text-center py-20 text-gray-400 text-sm;
+}
+
+.dashboard-empty {
+  @apply text-center py-16 text-gray-400;
+}
+
+.empty-icon {
+  @apply text-4xl block mb-3;
+}
+
+.empty-hint {
+  @apply text-xs text-gray-300 mt-1;
+}
+
+.entries-count {
+  @apply text-xs font-medium text-gray-400 mb-3 px-1 uppercase tracking-wider;
 }
 
 /* ─── Entry cards ─── */
@@ -53,11 +76,19 @@
 }
 
 .entry-card {
-  @apply bg-white rounded-xl border border-slate-200 px-4 sm:px-5 py-4 cursor-pointer hover:border-indigo-300 hover:shadow-md transition-all;
+  @apply bg-white rounded-xl border border-slate-200 px-4 py-4 cursor-pointer hover:border-indigo-300 hover:shadow-md transition-all flex items-center gap-3;
+}
+
+.entry-card-left {
+  @apply shrink-0;
+}
+
+.entry-card-icon {
+  @apply text-lg w-8 h-8 flex items-center justify-center bg-indigo-50 rounded-lg;
 }
 
 .entry-card-main {
-  @apply flex items-center justify-between gap-3;
+  @apply flex items-center justify-between gap-3 flex-1 min-w-0;
 }
 
 .entry-card-info {
@@ -74,4 +105,8 @@
 
 .entry-field-count {
   @apply text-xs text-gray-400 whitespace-nowrap shrink-0;
+}
+
+.entry-card-arrow {
+  @apply text-lg text-gray-300 shrink-0 font-light;
 }
