@@ -69,6 +69,16 @@
   @apply bg-transparent border-none focus:ring-0 w-full text-white placeholder-white/50 text-sm outline-none;
 }
 
+/* Rimuove sfondo bianco autofill su mobile/browser */
+.input-field:-webkit-autofill,
+.input-field:-webkit-autofill:hover,
+.input-field:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: white;
+}
+
 .input-toggle {
   @apply ml-2 text-white/50 hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0;
 }

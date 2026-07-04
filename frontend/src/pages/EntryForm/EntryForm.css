@@ -86,6 +86,15 @@
   border: 1px solid rgba(59, 73, 76, 0.3);
 }
 
+.field-input:-webkit-autofill,
+.field-input:-webkit-autofill:hover,
+.field-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #dae2fd;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(45, 52, 73, 0.5) inset;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: #dae2fd;
+}
+
 .field-input:focus {
   border-color: #00daf3;
   box-shadow: 0 0 12px rgba(0, 218, 243, 0.2);
@@ -95,6 +104,15 @@
   @apply w-full px-6 py-4 rounded-3xl text-sm outline-none transition-all duration-300 resize-none min-h-[200px] text-[#dae2fd] placeholder:text-[#849396]/50;
   background: rgba(45, 52, 73, 0.5);
   border: 1px solid rgba(59, 73, 76, 0.3);
+}
+
+.field-textarea:-webkit-autofill,
+.field-textarea:-webkit-autofill:hover,
+.field-textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #dae2fd;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(45, 52, 73, 0.5) inset;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: #dae2fd;
 }
 
 .field-textarea:focus {

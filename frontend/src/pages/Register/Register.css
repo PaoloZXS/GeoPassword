@@ -69,6 +69,15 @@
   @apply bg-transparent border-none focus:ring-0 w-full text-white placeholder-white/50 text-sm outline-none;
 }
 
+.register-form .input-glass .input-field:-webkit-autofill,
+.register-form .input-glass .input-field:-webkit-autofill:hover,
+.register-form .input-glass .input-field:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: white;
+}
+
 .register-submit {
   @apply w-full bg-white text-[#1e1b4b] font-bold py-4 rounded-full mt-4 hover:bg-gray-100 transition-all shadow-lg active:scale-95 cursor-pointer border-none disabled:opacity-50 disabled:cursor-not-allowed text-sm;
 }
