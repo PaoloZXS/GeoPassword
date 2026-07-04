@@ -74,9 +74,9 @@
 
 /* ─── Cards container ─── */
 .cards-container {
-  @apply overflow-y-auto rounded-xl px-3 pt-1.5 pb-3 min-h-0;
+  @apply overflow-y-auto rounded-xl px-3 pt-1.5 pb-5 min-h-0;
   flex: 0 1 auto;
-  max-height: 66vh;
+  max-height: 68vh;
   border: 1px solid rgba(0, 218, 243, 0.25);
   -webkit-overflow-scrolling: touch;
 }
