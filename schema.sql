@@ -180,6 +180,26 @@ BEGIN
 END;
 $$;
 
+-- Verifica se esiste già un titolo per l'utente
+CREATE OR REPLACE FUNCTION check_entry_title_exists(
+  p_user_id UUID,
+  p_title TEXT
+)
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+DECLARE
+  v_exists BOOLEAN;
+BEGIN
+  SELECT EXISTS(
+    SELECT 1 FROM password_entries
+    WHERE user_id = p_user_id AND title = p_title
+  ) INTO v_exists;
+  RETURN v_exists;
+END;
+$$;
+
 -- Aggiorna una entry (solo se appartiene all'utente)
 CREATE OR REPLACE FUNCTION update_entry(
   p_entry_id UUID,

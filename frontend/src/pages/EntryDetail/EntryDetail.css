@@ -10,7 +10,7 @@
 }
 
 .entry-detail-card {
-  @apply w-full max-w-md rounded-[32px] p-6 sm:p-8 relative overflow-hidden;
+  @apply w-full max-w-md rounded-[32px] p-6 sm:p-8 relative;
   background: rgba(34, 42, 61, 0.4);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -36,10 +36,14 @@
 
 .entry-detail-title {
   @apply text-xl font-bold text-[#c3f5ff] leading-tight;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .entry-detail-desc {
   @apply text-sm text-white/80 leading-relaxed whitespace-pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .detail-back-btn {

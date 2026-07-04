@@ -163,3 +163,50 @@
 .btn-text-form:hover {
   color: #c3f5ff;
 }
+
+/* ─── Confirm modal ─── */
+.modal-overlay {
+  @apply fixed inset-0 z-[10000] flex items-center justify-center p-4;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.modal-dialog {
+  @apply w-full max-w-sm rounded-2xl p-6 text-center;
+  background: linear-gradient(180deg, #1e1b4b 0%, #0f1535 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+.modal-icon {
+  @apply mx-auto mb-4 w-14 h-14 flex items-center justify-center rounded-full;
+}
+
+.modal-icon-warning {
+  background: rgba(250, 204, 21, 0.2);
+  color: #facc15;
+}
+
+.modal-title {
+  @apply text-lg font-bold text-white mb-2;
+}
+
+.modal-text {
+  @apply text-sm text-white/70 mb-6 leading-relaxed;
+}
+
+.modal-text strong {
+  @apply text-white font-semibold;
+}
+
+.modal-actions {
+  @apply flex gap-3;
+}
+
+.modal-btn {
+  @apply flex-1 px-4 py-3 rounded-xl text-sm font-semibold cursor-pointer transition-all border-none;
+}
+
+.modal-btn-primary {
+  @apply bg-[#00daf3] text-[#00363d] hover:bg-[#00e5ff] shadow-lg;
+}

@@ -14,6 +14,7 @@ function EntryForm() {
   const [description, setDescription] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [duplicateTitle, setDuplicateTitle] = useState(null);
   const [loadingEntry, setLoadingEntry] = useState(isEditing);
 
   useEffect(() => {
@@ -64,6 +65,18 @@ function EntryForm() {
       }
       navigate("/dashboard", { replace: true });
     } else {
+      // Check for duplicate title
+      const { data: exists } = await supabase.rpc("check_entry_title_exists", {
+        p_user_id: user.id,
+        p_title: title.trim()
+      });
+
+      if (exists) {
+        setDuplicateTitle(title.trim());
+        setSaving(false);
+        return;
+      }
+
       const { error: insertError } = await supabase.rpc("insert_entry", {
         p_user_id: user.id,
         p_title: title.trim(),
@@ -190,6 +203,45 @@ function EntryForm() {
           </form>
         </div>
       </main>
+
+      {/* Duplicate title modal */}
+      {duplicateTitle && (
+        <div className="modal-overlay" onClick={() => setDuplicateTitle(null)}>
+          <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-icon modal-icon-warning">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+            </div>
+            <h3 className="modal-title">Servizio già esistente</h3>
+            <p className="modal-text">
+              Esiste già un servizio chiamato{" "}
+              <strong>"{duplicateTitle}"</strong>. Scegli un nome diverso per
+              evitare duplicati.
+            </p>
+            <div className="modal-actions">
+              <button
+                className="modal-btn modal-btn-primary"
+                onClick={() => setDuplicateTitle(null)}
+              >
+                OK, cambia nome
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
