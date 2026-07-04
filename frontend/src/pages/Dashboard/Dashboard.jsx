@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { supabase } from "../../utils/supabase.js";
-import { migrateEntries } from "../../utils/migrate.js";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import "./Dashboard.css";
 
@@ -13,8 +12,6 @@ function Dashboard() {
   const [menuOpenId, setMenuOpenId] = useState(null);
   const [menuPos, setMenuPos] = useState({ top: 0, right: 0 });
   const [deleteConfirm, setDeleteConfirm] = useState(null); // { id, title }
-  const [migrating, setMigrating] = useState(false);
-  const [migrateResult, setMigrateResult] = useState(null);
   const menuRef = useRef(null);
   const { user, logout } = useAuth();
 
@@ -61,22 +58,6 @@ function Dashboard() {
     const entry = entries.find((e) => e.id === id);
     setDeleteConfirm({ id, title: entry?.title || "questo servizio" });
     setMenuOpenId(null);
-  };
-
-  const handleMigrate = async () => {
-    if (!user) return;
-    setMigrating(true);
-    setMigrateResult(null);
-    try {
-      const result = await migrateEntries(user.id);
-      setMigrateResult(result);
-      // Refresh entries list to get encrypted data
-      await fetchEntries();
-    } catch (err) {
-      setMigrateResult({ error: err.message });
-    } finally {
-      setMigrating(false);
-    }
   };
 
   const confirmDelete = async () => {
@@ -167,16 +148,6 @@ function Dashboard() {
         <button className="new-btn" onClick={() => navigate("/entry/new")}>
           + Nuovo Servizio
         </button>
-        {!migrateResult && (
-          <button
-            className="migrate-btn"
-            onClick={handleMigrate}
-            disabled={migrating}
-            title="Crittografa tutti i servizi"
-          >
-            🔒
-          </button>
-        )}
       </div>
 
       <main className="dashboard-content">
@@ -335,112 +306,6 @@ function Dashboard() {
                 Elimina
               </button>
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* Migration modal */}
-      {(migrating || migrateResult) && (
-        <div
-          className="modal-overlay"
-          onClick={() => {
-            if (!migrating) setMigrateResult(null);
-          }}
-        >
-          <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
-            <div
-              className="modal-icon"
-              style={
-                migrating
-                  ? { background: "rgba(0, 218, 243, 0.2)", color: "#00daf3" }
-                  : { background: "rgba(34, 197, 94, 0.2)", color: "#22c55e" }
-              }
-            >
-              {migrating ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 2v4" />
-                  <path d="M12 18v4" />
-                  <path d="M4.93 4.93l2.83 2.83" />
-                  <path d="M16.24 16.24l2.83 2.83" />
-                  <path d="M2 12h4" />
-                  <path d="M18 12h4" />
-                  <path d="M4.93 19.07l2.83-2.83" />
-                  <path d="M16.24 7.76l2.83-2.83" />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                </svg>
-              )}
-            </div>
-
-            {migrating ? (
-              <>
-                <h3 className="modal-title">Crittografia in corso...</h3>
-                <p className="modal-text">
-                  Sto crittografando tutti i tuoi servizi. Questo potrebbe
-                  richiedere qualche secondo.
-                </p>
-              </>
-            ) : migrateResult?.error ? (
-              <>
-                <h3 className="modal-title">Errore</h3>
-                <p className="modal-text">{migrateResult.error}</p>
-                <div className="modal-actions">
-                  <button
-                    className="modal-btn modal-btn-cancel"
-                    onClick={() => setMigrateResult(null)}
-                  >
-                    Chiudi
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <h3 className="modal-title">Crittografia completata</h3>
-                <p className="modal-text">
-                  <strong>{migrateResult?.migrated || 0}</strong> servizi
-                  crittografati,
-                  <strong> {migrateResult?.skipped || 0}</strong> già protetti
-                  {migrateResult?.errors > 0 && (
-                    <>
-                      , <strong>{migrateResult.errors}</strong> errori
-                    </>
-                  )}
-                  .<br />
-                  Totale: {migrateResult?.total || 0} servizi.
-                </p>
-                <div className="modal-actions">
-                  <button
-                    className="modal-btn modal-btn-primary"
-                    onClick={() => setMigrateResult(null)}
-                  >
-                    OK
-                  </button>
-                </div>
-              </>
-            )}
           </div>
         </div>
       )}
