@@ -193,7 +193,7 @@ function Login() {
             </button>
 
             <div className="login-forgot">
-              <Link to="/forgot-password">Forgot Password?</Link>
+              <Link to="/forgot-password">Password dimenticata?</Link>
             </div>
 
             <div className="login-divider">
@@ -203,9 +203,9 @@ function Login() {
 
             <div className="login-signup">
               <p className="text-sm text-white/60">
-                Don&apos;t have an account?{" "}
+                Non hai un account?{" "}
                 <Link to="/register" className="signup-link">
-                  Sign Up
+                  Registrati
                 </Link>
               </p>
             </div>
