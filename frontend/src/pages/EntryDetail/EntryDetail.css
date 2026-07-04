@@ -1,7 +1,8 @@
 @reference "tailwindcss";
 
 .entry-detail-container {
-  @apply min-h-screen bg-[#060e20];
+  @apply min-h-screen;
+  background: linear-gradient(180deg, #1e1b4b 0%, #060e20 100%);
 }
 
 .entry-detail-loading {
