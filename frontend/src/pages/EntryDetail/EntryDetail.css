@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .entry-detail-container {
-  @apply min-h-screen;
+  @apply min-h-screen flex items-center justify-center p-4;
   background: linear-gradient(180deg, #1e1b4b 0%, #060e20 100%);
 }
 
@@ -9,75 +9,46 @@
   @apply flex items-center justify-center min-h-screen text-white/40 text-sm;
 }
 
-.entry-detail-header {
-  @apply fixed top-0 w-full z-50 flex items-center gap-3 px-5 h-12;
-  background: rgba(11, 19, 38, 0.8);
+.entry-detail-card {
+  @apply w-full max-w-md rounded-[32px] p-6 sm:p-8 relative overflow-hidden;
+  background: rgba(34, 42, 61, 0.4);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(186, 201, 204, 0.1);
+  border: 1px solid rgba(186, 201, 204, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-.entry-detail-header .back-btn {
-  @apply p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer bg-transparent border-none text-white/70 hover:text-white;
+.entry-detail-card-header {
+  @apply flex items-center gap-3 mb-4;
 }
 
-.entry-detail-header h1 {
-  @apply text-lg sm:text-xl font-semibold text-[#c3f5ff] truncate;
-  letter-spacing: -0.3px;
+.entry-detail-card-header svg {
+  @apply w-5 h-5 text-[#00e5ff] shrink-0;
 }
 
-.entry-detail-card {
-  @apply max-w-2xl mx-4 sm:mx-auto mt-16 sm:mt-16 p-5 sm:p-6;
-}
-
-.entry-detail-fav {
-  @apply inline-block text-sm mb-3 text-white/80;
+.entry-detail-card-header h1 {
+  @apply text-lg font-semibold text-[#c3f5ff] truncate;
 }
 
 .entry-detail-desc {
-  @apply text-sm text-white/80 mt-2 mb-6 pb-4 border-b border-white/10 whitespace-pre-wrap leading-relaxed;
+  @apply text-sm text-white/80 leading-relaxed whitespace-pre-wrap;
 }
 
-/* ─── Buttons (same as EntryForm) ─── */
-.entry-actions {
-  @apply space-y-3;
+.detail-back-btn {
+  @apply w-full mt-6 pt-4 border-t border-white/10;
 }
 
-.entry-actions .btn-primary-form {
-  @apply w-full h-12 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border-none;
-  background: #00daf3;
-  color: #00363d;
-  box-shadow: 0 8px 32px rgba(0, 218, 243, 0.3);
-}
-
-.entry-actions .btn-primary-form:hover {
-  transform: scale(1.02);
-}
-
-.entry-actions .btn-primary-form:active {
-  transform: scale(0.95);
-}
-
-.entry-actions .btn-outline-form {
-  @apply w-full h-12 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer border-none;
-  color: #ffb4ab;
-  background: transparent;
-  border: 1px solid rgba(255, 180, 171, 0.3);
-}
-
-.entry-actions .btn-outline-form:hover {
-  background: rgba(255, 180, 171, 0.1);
-}
-
-.entry-actions .btn-outline-form:active {
-  transform: scale(0.95);
-}
-
-.entry-actions .btn-text-form {
-  @apply w-full py-2 text-sm font-medium transition-colors duration-200 cursor-pointer text-center border-none bg-transparent;
-  color: #849396;
-}
-
-.entry-actions .btn-text-form:hover {
+.detail-back-btn button {
+  @apply w-full h-11 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer border-none;
   color: #c3f5ff;
+  background: transparent;
+  border: 1px solid rgba(0, 218, 243, 0.3);
+}
+
+.detail-back-btn button:hover {
+  background: rgba(0, 218, 243, 0.1);
+}
+
+.detail-back-btn button:active {
+  transform: scale(0.95);
 }

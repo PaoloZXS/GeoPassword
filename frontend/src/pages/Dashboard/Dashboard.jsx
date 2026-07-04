@@ -10,8 +10,23 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [menuOpenId, setMenuOpenId] = useState(null);
+  const [menuPos, setMenuPos] = useState({ top: 0, right: 0 });
+  const [deleteConfirm, setDeleteConfirm] = useState(null); // { id, title }
   const menuRef = useRef(null);
   const { user, logout } = useAuth();
+
+  // Close menu on click outside
+  useEffect(() => {
+    if (!menuOpenId) return;
+    const handleClick = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        const btn = e.target.closest(".entry-card-menu-btn");
+        if (!btn) setMenuOpenId(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [menuOpenId]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,17 +53,25 @@ function Dashboard() {
     navigate("/login", { replace: true });
   };
 
-  const handleDelete = async (e, id) => {
+  const handleDeleteClick = (e, id) => {
     e.stopPropagation();
-    if (!window.confirm("Eliminare questo servizio?")) return;
+    const entry = entries.find((e) => e.id === id);
+    setDeleteConfirm({ id, title: entry?.title || "questo servizio" });
+    setMenuOpenId(null);
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteConfirm) return;
     const { error } = await supabase.rpc("delete_entry", {
-      p_entry_id: id,
+      p_entry_id: deleteConfirm.id,
       p_user_id: user.id
     });
     if (!error) {
-      setEntries((prev) => prev.filter((entry) => entry.id !== id));
+      setEntries((prev) =>
+        prev.filter((entry) => entry.id !== deleteConfirm.id)
+      );
     }
-    setMenuOpenId(null);
+    setDeleteConfirm(null);
   };
 
   // Close menu on click outside
@@ -167,14 +190,18 @@ function Dashboard() {
                         )}
                       </h3>
                     </div>
-                    <div
-                      className="entry-card-menu-wrap"
-                      ref={menuOpenId === entry.id ? menuRef : null}
-                    >
+                    <div className="entry-card-menu-wrap">
                       <button
                         className="entry-card-menu-btn"
+                        data-menu-id={entry.id}
                         onClick={(e) => {
                           e.stopPropagation();
+                          const btn = e.currentTarget;
+                          const rect = btn.getBoundingClientRect();
+                          setMenuPos({
+                            top: rect.bottom + 4,
+                            right: window.innerWidth - rect.right
+                          });
                           setMenuOpenId(
                             menuOpenId === entry.id ? null : entry.id
                           );
@@ -196,25 +223,6 @@ function Dashboard() {
                           <circle cx="12" cy="19" r="1" />
                         </svg>
                       </button>
-                      {menuOpenId === entry.id && (
-                        <div className="entry-card-menu">
-                          <button
-                            className="menu-item"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(`/entry/edit/${entry.id}`);
-                            }}
-                          >
-                            Modifica
-                          </button>
-                          <button
-                            className="menu-item menu-item-danger"
-                            onClick={(e) => handleDelete(e, entry.id)}
-                          >
-                            Elimina
-                          </button>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -223,6 +231,78 @@ function Dashboard() {
           </>
         )}
       </main>
+
+      {/* Floating menu */}
+      {menuOpenId && (
+        <div
+          ref={menuRef}
+          className="entry-card-menu-fixed"
+          style={{ top: menuPos.top, right: menuPos.right }}
+        >
+          <button
+            className="menu-item"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/entry/edit/${menuOpenId}`);
+              setMenuOpenId(null);
+            }}
+          >
+            Modifica
+          </button>
+          <button
+            className="menu-item menu-item-danger"
+            onClick={(e) => handleDeleteClick(e, menuOpenId)}
+          >
+            Elimina
+          </button>
+        </div>
+      )}
+
+      {/* Delete confirmation modal */}
+      {deleteConfirm && (
+        <div className="modal-overlay" onClick={() => setDeleteConfirm(null)}>
+          <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 6h18" />
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                <line x1="10" y1="11" x2="10" y2="17" />
+                <line x1="14" y1="11" x2="14" y2="17" />
+              </svg>
+            </div>
+            <h3 className="modal-title">Eliminare questo servizio?</h3>
+            <p className="modal-text">
+              Stai per eliminare <strong>"{deleteConfirm.title}"</strong>.
+              Questa azione non può essere annullata.
+            </p>
+            <div className="modal-actions">
+              <button
+                className="modal-btn modal-btn-cancel"
+                onClick={() => setDeleteConfirm(null)}
+              >
+                Annulla
+              </button>
+              <button
+                className="modal-btn modal-btn-danger"
+                onClick={confirmDelete}
+              >
+                Elimina
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
