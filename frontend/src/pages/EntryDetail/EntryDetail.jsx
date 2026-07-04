@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { supabase } from "../../utils/supabase.js";
+import { loadKey, decryptText } from "../../utils/crypto.js";
 import "./EntryDetail.css";
 
 function EntryDetail() {
@@ -9,6 +10,7 @@ function EntryDetail() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [entry, setEntry] = useState(null);
+  const [decryptedDesc, setDecryptedDesc] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,7 +28,18 @@ function EntryDetail() {
       navigate("/dashboard", { replace: true });
       return;
     }
-    setEntry(data[0]);
+
+    const rawEntry = data[0];
+    setEntry(rawEntry);
+
+    // Decrypt description
+    const key = await loadKey();
+    if (key && rawEntry.description) {
+      const decrypted = await decryptText(key, rawEntry.description);
+      setDecryptedDesc(decrypted);
+    } else {
+      setDecryptedDesc(rawEntry.description || "");
+    }
     setLoading(false);
   };
 
@@ -62,9 +75,7 @@ function EntryDetail() {
           <h1 className="entry-detail-title">{entry.title}</h1>
         </div>
 
-        {entry.description && (
-          <p className="entry-detail-desc">{entry.description}</p>
-        )}
+        {decryptedDesc && <p className="entry-detail-desc">{decryptedDesc}</p>}
         <div className="detail-back-btn">
           <button onClick={() => navigate("/dashboard")}>Indietro</button>
         </div>

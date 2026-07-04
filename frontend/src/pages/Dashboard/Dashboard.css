@@ -208,3 +208,24 @@
 .modal-btn-danger {
   @apply bg-red-500 text-white hover:bg-red-600 shadow-lg;
 }
+
+.modal-btn-primary {
+  @apply bg-[#00daf3] text-[#00363d] hover:bg-[#00e5ff] shadow-lg;
+}
+
+/* ─── Migrate button ─── */
+.migrate-btn {
+  @apply shrink-0 w-9 h-9 flex items-center justify-center rounded-full text-sm transition-all cursor-pointer border-none;
+  background: rgba(0, 218, 243, 0.15);
+  color: #00daf3;
+  border: 1px solid rgba(0, 218, 243, 0.3);
+}
+
+.migrate-btn:hover:not(:disabled) {
+  background: rgba(0, 218, 243, 0.25);
+}
+
+.migrate-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

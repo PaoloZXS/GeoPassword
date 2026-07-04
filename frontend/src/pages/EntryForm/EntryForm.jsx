@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { supabase } from "../../utils/supabase.js";
+import { loadKey, encryptText, decryptText } from "../../utils/crypto.js";
 import "./EntryForm.css";
 
 function EntryForm() {
@@ -35,7 +36,15 @@ function EntryForm() {
     }
 
     setTitle(data[0].title);
-    setDescription(data[0].description || "");
+
+    // Decrypt description for editing
+    const key = await loadKey();
+    if (key) {
+      const decrypted = await decryptText(key, data[0].description || "");
+      setDescription(decrypted);
+    } else {
+      setDescription(data[0].description || "");
+    }
     setLoadingEntry(false);
   };
 
@@ -49,13 +58,19 @@ function EntryForm() {
     setSaving(true);
     setError("");
 
+    // Encrypt description before saving
+    const key = await loadKey();
+    const encryptedDesc = key
+      ? await encryptText(key, description.trim())
+      : description.trim();
+
     if (isEditing) {
       const { error: updateError } = await supabase.rpc("update_entry", {
         p_entry_id: id,
         p_user_id: user.id,
         p_title: title.trim(),
         p_category: "",
-        p_description: description.trim()
+        p_description: encryptedDesc
       });
 
       if (updateError) {
@@ -81,7 +96,7 @@ function EntryForm() {
         p_user_id: user.id,
         p_title: title.trim(),
         p_category: "",
-        p_description: description.trim()
+        p_description: encryptedDesc
       });
 
       if (insertError) {

@@ -6,6 +6,7 @@ import {
   useCallback
 } from "react";
 import { supabase } from "../utils/supabase.js";
+import { deriveAndStoreKey, clearKey } from "../utils/crypto.js";
 
 const AuthContext = createContext(null);
 
@@ -34,6 +35,9 @@ export function AuthProvider({ children }) {
     if (error) throw new Error(error.message);
     if (!data || data.length === 0) throw new Error("Credenziali errate");
 
+    // Derive encryption key from the password and store in sessionStorage
+    await deriveAndStoreKey(password);
+
     const userData = { id: data[0].id, username: data[0].username };
     setUser(userData);
     sessionStorage.setItem("geopassword_user", JSON.stringify(userData));
@@ -43,6 +47,7 @@ export function AuthProvider({ children }) {
   const logout = useCallback(() => {
     setUser(null);
     sessionStorage.removeItem("geopassword_user");
+    clearKey();
   }, []);
 
   return (
