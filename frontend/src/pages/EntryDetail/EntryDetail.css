@@ -19,15 +19,23 @@
 }
 
 .entry-detail-card-header {
-  @apply flex items-center gap-3 mb-4;
+  @apply flex flex-col gap-1.5 mb-5;
 }
 
 .entry-detail-card-header svg {
   @apply w-5 h-5 text-[#00e5ff] shrink-0;
 }
 
-.entry-detail-card-header h1 {
-  @apply text-lg font-semibold text-[#c3f5ff] truncate;
+.entry-detail-card-header-row {
+  @apply flex items-center gap-2;
+}
+
+.entry-detail-label {
+  @apply text-sm font-medium text-white/60;
+}
+
+.entry-detail-title {
+  @apply text-xl font-bold text-[#c3f5ff] leading-tight;
 }
 
 .entry-detail-desc {
