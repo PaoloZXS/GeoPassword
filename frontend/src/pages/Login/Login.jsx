@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import "./Login.css";
 
@@ -164,6 +164,20 @@ function Login() {
             <button type="submit" className="login-submit" disabled={loading}>
               {loading ? "ACCESSO IN CORSO..." : "LOGIN"}
             </button>
+
+            <div className="login-divider">
+              <span className="divider-line" />
+              <span className="divider-line" />
+            </div>
+
+            <div className="login-signup">
+              <p className="text-sm text-white/60">
+                Non hai un account?{" "}
+                <Link to="/register" className="signup-link">
+                  Registrati
+                </Link>
+              </p>
+            </div>
           </form>
         </section>
       </main>
