@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.section-group {
+  @apply bg-white rounded-xl shadow-sm border border-gray-200;
+}
+
+.section-title {
+  @apply text-base font-semibold text-gray-700 px-5 py-3 border-b border-gray-100;
+}
+
+.section-empty {
+  @apply px-5 py-8 text-center text-sm text-gray-400;
+}

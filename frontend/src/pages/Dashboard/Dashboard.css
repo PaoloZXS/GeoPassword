@@ -1,0 +1,78 @@
+@reference "tailwindcss";
+
+.dashboard-container {
+  @apply min-h-screen bg-gray-50;
+}
+
+/* ─── Header ─── */
+.dashboard-header {
+  @apply bg-white shadow-sm px-4 sm:px-6 py-4 border-b border-gray-200;
+}
+
+.dashboard-header-top {
+  @apply flex items-center justify-between;
+}
+
+.dashboard-header h1 {
+  @apply text-xl sm:text-2xl font-bold text-gray-800;
+}
+
+.dashboard-header p {
+  @apply text-xs sm:text-sm text-gray-500 mt-0.5;
+}
+
+.logout-btn {
+  @apply px-3 sm:px-4 py-1.5 text-xs sm:text-sm text-red-600 border border-red-300 rounded-lg hover:bg-red-50 transition cursor-pointer shrink-0;
+}
+
+/* ─── Toolbar (search + nuovo) ─── */
+.dashboard-toolbar {
+  @apply max-w-4xl mx-auto px-4 sm:px-4 pt-4 sm:pt-6 flex items-center gap-3;
+}
+
+.dashboard-toolbar .new-btn {
+  @apply shrink-0 px-4 sm:px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-xl hover:bg-blue-700 transition cursor-pointer;
+}
+
+/* ─── Content area ─── */
+.dashboard-content {
+  @apply max-w-4xl mx-auto px-4 py-6;
+}
+
+.dashboard-loading,
+.dashboard-empty {
+  @apply text-center py-16 text-gray-400 text-sm;
+}
+
+/* ─── Entry cards ─── */
+.entries-list {
+  @apply flex flex-col gap-3;
+}
+
+.entry-card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-200 px-4 sm:px-5 py-4 cursor-pointer hover:shadow-md hover:border-blue-300 transition-all;
+}
+
+.entry-card-main {
+  @apply flex items-center justify-between gap-3;
+}
+
+.entry-card-info {
+  @apply flex flex-col gap-1 min-w-0;
+}
+
+.entry-card-title {
+  @apply text-sm sm:text-base font-semibold text-gray-800 truncate flex items-center gap-2;
+}
+
+.entry-star {
+  @apply text-sm shrink-0;
+}
+
+.entry-category {
+  @apply text-xs text-gray-400 truncate;
+}
+
+.entry-field-count {
+  @apply text-xs text-gray-400 whitespace-nowrap shrink-0;
+}

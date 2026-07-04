@@ -1,0 +1,6 @@
+# Root gitignore - GeoPassword
+# Ignora node_modules ovunque
+node_modules/
+dist/
+.env
+*.log

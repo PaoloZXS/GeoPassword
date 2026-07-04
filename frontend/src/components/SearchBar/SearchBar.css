@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.search-bar {
+  @apply flex items-center gap-2 flex-1 min-w-0;
+}
+
+.search-bar input {
+  @apply w-full px-4 py-2.5 border border-gray-300 rounded-xl text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+}
+
+.search-icon {
+  @apply text-lg shrink-0;
+}

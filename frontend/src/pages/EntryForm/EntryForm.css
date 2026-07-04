@@ -1,0 +1,54 @@
+@reference "tailwindcss";
+
+.entry-form-container {
+  @apply min-h-screen bg-gray-50;
+}
+
+.entry-form-header {
+  @apply bg-white shadow-sm px-4 sm:px-6 py-4 border-b border-gray-200 flex items-center gap-4;
+}
+
+.entry-form-header h1 {
+  @apply text-lg sm:text-xl font-bold text-gray-800;
+}
+
+.entry-form-loading {
+  @apply flex items-center justify-center min-h-screen text-gray-400 text-sm;
+}
+
+.entry-form-card {
+  @apply max-w-2xl mx-auto mt-6 sm:mt-8 mx-4 sm:mx-auto bg-white rounded-xl shadow-md p-5 sm:p-6 flex flex-col gap-5;
+}
+
+.entry-form-error {
+  @apply bg-red-100 border border-red-400 text-red-700 text-sm rounded-lg p-3 text-center;
+}
+
+.form-group {
+  @apply flex flex-col gap-1.5;
+}
+
+.form-group label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.form-group .required {
+  @apply text-red-500;
+}
+
+.form-group input,
+.form-group textarea {
+  @apply px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+}
+
+.form-group textarea {
+  @apply resize-none min-h-[180px];
+}
+
+.entry-form-actions {
+  @apply flex flex-row gap-2 mt-2 pt-4 border-t border-gray-100;
+}
+
+.entry-form-actions .btn {
+  @apply flex-1 text-center;
+}

@@ -1,0 +1,57 @@
+@reference "tailwindcss";
+
+.login-container {
+  @apply min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-700 p-4;
+}
+
+.login-card {
+  @apply bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md;
+}
+
+.login-title {
+  @apply text-3xl font-bold text-center text-gray-800 mb-2;
+}
+
+.login-subtitle {
+  @apply text-gray-500 text-center mb-8;
+}
+
+.login-form {
+  @apply flex flex-col gap-5;
+}
+
+.form-group {
+  @apply flex flex-col gap-1.5;
+}
+
+.form-group label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.form-group input {
+  @apply px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+}
+
+.login-btn {
+  @apply mt-2 bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.login-error {
+  @apply bg-red-100 border border-red-400 text-red-700 text-sm rounded-lg p-3 text-center;
+}
+
+.login-register-link {
+  @apply text-center text-sm text-gray-500 mt-6;
+}
+
+.login-register-link a {
+  @apply text-blue-600 hover:text-blue-800 font-medium;
+}
+
+.login-forgot-link {
+  @apply text-center text-xs mt-3;
+}
+
+.login-forgot-link a {
+  @apply text-gray-400 hover:text-gray-600;
+}

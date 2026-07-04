@@ -1,0 +1,8 @@
+# Configurazione Vercel per GeoPassword
+# La root è frontend/ perché è lì che sta il progetto Vite
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install"
+}

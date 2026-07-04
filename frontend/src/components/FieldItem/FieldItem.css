@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.field-item {
+  @apply flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0;
+}
+
+.field-label {
+  @apply text-sm font-medium text-gray-500;
+}
+
+.field-value {
+  @apply text-sm text-gray-800 font-mono;
+}

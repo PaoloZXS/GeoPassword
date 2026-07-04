@@ -1,0 +1,53 @@
+@reference "tailwindcss";
+
+.entry-detail-container {
+  @apply min-h-screen bg-gray-50;
+}
+
+.entry-detail-loading {
+  @apply flex items-center justify-center min-h-screen text-gray-400 text-sm;
+}
+
+.entry-detail-header {
+  @apply bg-white shadow-sm px-4 sm:px-6 py-4 border-b border-gray-200;
+}
+
+.entry-detail-header h1 {
+  @apply text-lg sm:text-xl font-bold text-gray-800 truncate;
+}
+
+.entry-detail-card {
+  @apply max-w-2xl mx-4 sm:mx-auto mt-6 sm:mt-8 bg-white rounded-xl shadow-md p-5 sm:p-6;
+}
+
+.entry-detail-category {
+  @apply inline-block bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full mb-3;
+}
+
+.entry-detail-fav {
+  @apply inline-block ml-2 text-sm;
+}
+
+.entry-detail-desc {
+  @apply text-sm text-gray-600 mt-3 mb-6 pb-4 border-b border-gray-100 whitespace-pre-wrap;
+}
+
+.entry-detail-section {
+  @apply mt-4;
+}
+
+.entry-detail-section h3 {
+  @apply text-sm font-semibold text-gray-700 mb-3;
+}
+
+.entry-detail-empty {
+  @apply text-sm text-gray-400 py-6 text-center;
+}
+
+.entry-actions {
+  @apply flex flex-row gap-2 mt-6 pt-4 border-t border-gray-100;
+}
+
+.entry-actions .btn {
+  @apply flex-1 text-center;
+}
