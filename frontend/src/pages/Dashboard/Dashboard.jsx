@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { supabase } from "../../utils/supabase.js";
@@ -9,6 +9,8 @@ function Dashboard() {
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [menuOpenId, setMenuOpenId] = useState(null);
+  const menuRef = useRef(null);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ function Dashboard() {
     if (error) {
       console.error("Errore caricamento entries:", error);
     } else {
-      setEntries(data || []);
+      setEntries((data || []).sort((a, b) => a.title.localeCompare(b.title)));
     }
     setLoading(false);
   };
@@ -35,6 +37,36 @@ function Dashboard() {
     logout();
     navigate("/login", { replace: true });
   };
+
+  const handleDelete = async (e, id) => {
+    e.stopPropagation();
+    if (!window.confirm("Eliminare questo servizio?")) return;
+    const { error } = await supabase.rpc("delete_entry", {
+      p_entry_id: id,
+      p_user_id: user.id
+    });
+    if (!error) {
+      setEntries((prev) => prev.filter((entry) => entry.id !== id));
+    }
+    setMenuOpenId(null);
+  };
+
+  // Close menu on click outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpenId(null);
+      }
+    };
+    if (menuOpenId) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [menuOpenId]);
 
   const filteredEntries = entries.filter((e) =>
     e.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -116,8 +148,8 @@ function Dashboard() {
         ) : (
           <>
             <div className="entries-count">
-              {filteredEntries.length} servizio
-              {filteredEntries.length !== 1 ? "i" : ""}
+              {filteredEntries.length}{" "}
+              {filteredEntries.length === 1 ? "servizio" : "servizi"}
             </div>
             <div className="entries-list">
               {filteredEntries.map((entry) => (
@@ -130,8 +162,59 @@ function Dashboard() {
                     <div className="entry-card-info">
                       <h3 className="entry-card-title">
                         {entry.title}
-                        {entry.favorite && <span className="entry-star">⭐</span>}
+                        {entry.favorite && (
+                          <span className="entry-star">⭐</span>
+                        )}
                       </h3>
+                    </div>
+                    <div
+                      className="entry-card-menu-wrap"
+                      ref={menuOpenId === entry.id ? menuRef : null}
+                    >
+                      <button
+                        className="entry-card-menu-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setMenuOpenId(
+                            menuOpenId === entry.id ? null : entry.id
+                          );
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <circle cx="12" cy="12" r="1" />
+                          <circle cx="12" cy="5" r="1" />
+                          <circle cx="12" cy="19" r="1" />
+                        </svg>
+                      </button>
+                      {menuOpenId === entry.id && (
+                        <div className="entry-card-menu">
+                          <button
+                            className="menu-item"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/entry/edit/${entry.id}`);
+                            }}
+                          >
+                            ✏️ Modifica
+                          </button>
+                          <button
+                            className="menu-item menu-item-danger"
+                            onClick={(e) => handleDelete(e, entry.id)}
+                          >
+                            🗑️ Elimina
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

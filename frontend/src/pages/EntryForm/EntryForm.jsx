@@ -62,9 +62,9 @@ function EntryForm() {
         setSaving(false);
         return;
       }
-      navigate(`/entry/${id}`, { replace: true });
+      navigate("/dashboard", { replace: true });
     } else {
-      const { data, error: insertError } = await supabase.rpc("insert_entry", {
+      const { error: insertError } = await supabase.rpc("insert_entry", {
         p_user_id: user.id,
         p_title: title.trim(),
         p_category: "",
@@ -76,7 +76,7 @@ function EntryForm() {
         setSaving(false);
         return;
       }
-      navigate(`/entry/${data[0].id}`, { replace: true });
+      navigate("/dashboard", { replace: true });
     }
   };
 
